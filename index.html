@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Fit Trackr Pro</title>
+  <link rel='icon' href='https://cdn-icons-png.flaticon.com/512/69/69979.png' />
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap' rel='stylesheet'>
+  <style>
+    body {font-family: 'Inter', sans-serif; margin:0; background:#f9f9fb; color:#222; overflow-x:hidden;}
+    header {padding:1rem; background:#222; color:#fff; text-align:center; font-weight:600;}
+    .tab-bar {position:fixed; bottom:0; left:0; width:100%; background:#fff; display:flex; justify-content:space-around; border-top:1px solid #ddd;}
+    .tab-bar button {background:none; border:none; padding:0.8rem 1rem; font-size:1.2rem; display:flex; flex-direction:column; align-items:center; color:#666;}
+    .tab-bar button.active {color:#007bff;}
+    main {max-width:800px; margin:auto; padding:1rem 1rem 4rem;}
+    .section {margin-top:1.5rem;}
+    h2 {font-size:1.2rem; border-bottom:2px solid #ddd; padding-bottom:0.4rem;}
+    input, select, button {height:44px; padding:0.5rem; border-radius:6px; border:1px solid #ccc; font-size:1rem; margin-top:0.5rem; width:100%; box-sizing:border-box;}
+    button.primary {background:#007bff; color:white; border:none; font-weight:600;}
+    button.primary:hover {opacity:0.9; cursor:pointer;}
+    .exercise-card {background:white; border-radius:10px; padding:1rem; box-shadow:0 1px 3px rgba(0,0,0,0.1); margin-bottom:1rem; position:relative;}
+    .exercise-fav {position:absolute; top:10px; right:10px; font-size:1.4rem; cursor:pointer; color:#ccc;}
+    .exercise-fav.active {color:#FFD700;}
+    .csv-buttons {display:flex; flex-direction:column; gap:10px; margin-top:1rem;}
+    .csv-buttons button {background:#28a745; color:#fff; border:none; border-radius:4px; font-weight:600;}
+  </style>
+</head>
+
+<body>
+  <header>🏋️‍♂️ Fit Trackr Pro</header>
+  <main>
+    <section id='dashboard' class='section'>
+      <h2>Dashboard</h2>
+      <p>Track your progress visually. Easily log workouts and metrics.</p>
+    </section>
+
+    <section id='exercises' class='section'>
+      <h2>Exercises</h2>
+      <input type='text' id='searchExercises' placeholder='Search exercises...' />
+      <div id='exerciseList'></div>
+    </section>
+
+    <section id='export' class='section'>
+      <h2>Export Data</h2>
+      <p>Download your data anytime for backup.</p>
+      <div class='csv-buttons'>
+        <button onclick='downloadCSV("workouts")'>⬇️ Download Workout Data</button>
+        <button onclick='downloadCSV("metrics")'>⬇️ Download Body Metrics</button>
+        <button onclick='downloadCSV("exercises")'>⬇️ Download Exercise Library</button>
+      </div>
+    </section>
+
+    <section id='settings' class='section'>
+      <h2>Settings</h2>
+      <p>Connect your Google Sheets for sync.</p>
+      <input type='text' id='sheetURL' placeholder='Enter Google Web App URL' />
+      <button class='primary' onclick='saveSheetURL()'>Save URL</button>
+    </section>
+  </main>
+
+  <nav class='tab-bar'>
+    <button onclick='showTab("dashboard")'>🏠<span>Dashboard</span></button>
+    <button onclick='showTab("exercises")'>💪<span>Exercises</span></button>
+    <button onclick='showTab("export")'>📤<span>Export</span></button>
+    <button onclick='showTab("settings")'>⚙️<span>Settings</span></button>
+  </nav>
+
+  <script>
+    const exercises = [
+      {name:'Push Ups', muscle:'Chest'},
+      {name:'Pull Ups', muscle:'Back'},
+      {name:'Squats', muscle:'Legs'},
+      {name:'Deadlifts', muscle:'Back'},
+      {name:'Plank', muscle:'Core'},
+    ];
+
+    let favorites = JSON.parse(localStorage.getItem('fittrackr_favorites')) || [];
+
+    function renderExercises(){
+      const list = document.getElementById('exerciseList');
+      list.innerHTML = '';
+      const query = document.getElementById('searchExercises').value.toLowerCase();
+      exercises.filter(e => e.name.toLowerCase().includes(query)).forEach(e => {
+        const card = document.createElement('div');
+        card.className = 'exercise-card';
+        card.innerHTML = `<strong>${e.name}</strong><br><small>${e.muscle}</small>`;
+        const fav = document.createElement('span');
+        fav.className = 'exercise-fav' + (favorites.includes(e.name) ? ' active' : '');
+        fav.innerHTML = '★';
+        fav.onclick = () => toggleFav(e.name);
+        card.appendChild(fav);
+        list.appendChild(card);
+      });
+    }
+
+    function toggleFav(name){
+      if(favorites.includes(name)) favorites = favorites.filter(f => f !== name);
+      else favorites.push(name);
+      localStorage.setItem('fittrackr_favorites', JSON.stringify(favorites));
+      renderExercises();
+    }
+
+    document.getElementById('searchExercises').addEventListener('input', renderExercises);
+    window.onload = renderExercises;
+
+    function showTab(id){
+      document.querySelectorAll('main section').forEach(s=>s.style.display='none');
+      document.getElementById(id).style.display='block';
+      document.querySelectorAll('.tab-bar button').forEach(b=>b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    function saveSheetURL(){
+      const url = document.getElementById('sheetURL').value.trim();
+      if(url) localStorage.setItem('fittrackr_sheetURL', url);
+      alert('Google Sheet URL saved!');
+    }
+
+    function downloadCSV(type){
+      const rows = (type==='workouts')? [['Date','Muscle']] : (type==='metrics')? [['Date','Weight','Body Fat']] : [['Exercise','Muscle']];
+      const csv = rows.map(r => r.join(',')).join('
+');
+      const blob = new Blob([csv], {type:'text/csv'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${type}_fittrackr.csv`;
+      a.click();
+    }
+  </script>
+</body>
+</html>
