@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fit Trackr Pro - Workout Tracker</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fit Trackr Pro - Workout Tracker</title>
+<style>
         :root {
             --color-bg: #0a0e27;
             --color-surface: #1a1f3a;
@@ -870,411 +871,380 @@
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Navigation -->
-        <nav class="nav-sidebar" id="navSidebar">
-            <div class="nav-logo">💪 Fit Trackr Pro</div>
-            <div class="nav-item active" onclick="switchView('dashboard')">
-                <span class="nav-icon">📊</span>
+<div class="app-container">
+<!-- Navigation -->
+<nav class="nav-sidebar" id="navSidebar">
+<div class="nav-logo">💪 Fit Trackr Pro</div>
+<div class="nav-item active" onclick="switchView('dashboard')">
+<span class="nav-icon">📊</span>
                 Dashboard
             </div>
-            <div class="nav-item" onclick="switchView('exercises')">
-                <span class="nav-icon">🏋️</span>
+<div class="nav-item" onclick="switchView('exercises')">
+<span class="nav-icon">🏋️</span>
                 Exercises
             </div>
-            <div class="nav-item" onclick="switchView('export')">
-                <span class="nav-icon">📥</span>
+<div class="nav-item" onclick="switchView('export')">
+<span class="nav-icon">📥</span>
                 Export Data
             </div>
-            <div class="nav-item" onclick="switchView('settings')">
-                <span class="nav-icon">⚙️</span>
+<div class="nav-item" onclick="switchView('settings')">
+<span class="nav-icon">⚙️</span>
                 Settings
             </div>
-        </nav>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard View -->
-            <div id="dashboard" class="view active">
-                <div class="dashboard-grid">
-                    <!-- Stats Summary -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Workout Overview</h2>
-                        </div>
-                        <div class="stats-grid">
-                            <div class="stat-card">
-                                <div class="stat-value" id="totalWorkouts">0</div>
-                                <div class="stat-label">Total Workouts</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="currentStreak">0</div>
-                                <div class="stat-label">Current Streak</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="weeksCompleted">0</div>
-                                <div class="stat-label">Weeks (5 days)</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="thisWeekDays">0</div>
-                                <div class="stat-label">This Week</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Calendar -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Workout Calendar</h2>
-                        </div>
-                        <div class="calendar">
-                            <div class="calendar-header">
-                                <div class="calendar-month" id="calendarMonth">October 2025</div>
-                                <div class="calendar-nav">
-                                    <button class="calendar-btn" onclick="changeMonth(-1)">← Prev</button>
-                                    <button class="calendar-btn" onclick="changeMonth(1)">Next →</button>
-                                </div>
-                            </div>
-                            <div class="calendar-grid" id="calendarGrid">
-                                <!-- Calendar will be rendered here -->
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Muscle Stats - Body Map Removed -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Muscle Group Activity</h2>
-                            <select class="metric-select" id="muscleActivityPeriod" onchange="renderMuscleStats()" style="max-width: 200px; flex: none;">
-                                <option value="30">Last 30 Days</option>
-                                <option value="180">Last 6 Months</option>
-                                <option value="365">Last 1 Year</option>
-                                <option value="all">All Time</option>
-                            </select>
-                        </div>
-                        <div id="muscleStatsList">
-                            <!-- Muscle stats will be rendered here -->
-                        </div>
-                    </div>
-                    
-                    <!-- Metrics Tracker -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Body Metrics</h2>
-                        </div>
-                        <div class="metrics-controls">
-                            <select class="metric-select" id="metricSelect" onchange="updateMetricChart()">
-                                <option value="weight">Weight (kg)</option>
-                                <option value="bodyFat">Body Fat %</option>
-                                <option value="bmi">BMI</option>
-                            </select>
-                            <button class="add-metric-btn" onclick="showAddMetricModal()">
-                                <span>+</span> Add Metric
+</nav>
+<!-- Main Content -->
+<main class="main-content">
+<!-- Dashboard View -->
+<div class="view active" id="dashboard">
+<div class="dashboard-grid">
+<!-- Stats Summary -->
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Workout Overview</h2>
+</div>
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-value" id="totalWorkouts">0</div>
+<div class="stat-label">Total Workouts</div>
+</div>
+<div class="stat-card">
+<div class="stat-value" id="currentStreak">0</div>
+<div class="stat-label">Current Streak</div>
+</div>
+<div class="stat-card">
+<div class="stat-value" id="weeksCompleted">0</div>
+<div class="stat-label">Weeks (5 days)</div>
+</div>
+<div class="stat-card">
+<div class="stat-value" id="thisWeekDays">0</div>
+<div class="stat-label">This Week</div>
+</div>
+</div>
+</div>
+<!-- Calendar -->
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Workout Calendar</h2>
+</div>
+<div class="calendar">
+<div class="calendar-header">
+<div class="calendar-month" id="calendarMonth">October 2025</div>
+<div class="calendar-nav">
+<button class="calendar-btn" onclick="changeMonth(-1)">← Prev</button>
+<button class="calendar-btn" onclick="changeMonth(1)">Next →</button>
+</div>
+</div>
+<div class="calendar-grid" id="calendarGrid">
+<!-- Calendar will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Muscle Stats - Body Map Removed -->
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Muscle Group Activity</h2>
+<select class="metric-select" id="muscleActivityPeriod" onchange="renderMuscleStats()" style="max-width: 200px; flex: none;">
+<option value="30">Last 30 Days</option>
+<option value="180">Last 6 Months</option>
+<option value="365">Last 1 Year</option>
+<option value="all">All Time</option>
+</select>
+</div>
+<div id="muscleStatsList">
+<!-- Muscle stats will be rendered here -->
+</div>
+</div>
+<!-- Metrics Tracker -->
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Body Metrics</h2>
+</div>
+<div class="metrics-controls">
+<select class="metric-select" id="metricSelect" onchange="updateMetricChart()">
+<option value="weight">Weight (kg)</option>
+<option value="bodyFat">Body Fat %</option>
+<option value="bmi">BMI</option>
+</select>
+<button class="add-metric-btn" onclick="showAddMetricModal()">
+<span>+</span> Add Metric
                             </button>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="metricsChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Exercises View -->
-            <div id="exercises" class="view">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Exercise Library</h2>
-                        <button class="add-metric-btn" onclick="showAddExerciseModal()">
-                            <span>+</span> Add Exercise
+</div>
+<div class="chart-container">
+<canvas id="metricsChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+<!-- Exercises View -->
+<div class="view" id="exercises">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Exercise Library</h2>
+<button class="add-metric-btn" onclick="showAddExerciseModal()">
+<span>+</span> Add Exercise
                         </button>
-                    </div>
-                    
-                    <div class="exercise-filters">
-                        <div class="filter-group" style="flex: 2;">
-                            <label class="filter-label">Search Exercises</label>
-                            <input type="text" class="form-input" id="exerciseSearch" placeholder="Search by name..." oninput="filterExercises()">
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Muscle Group</label>
-                            <select class="metric-select" id="muscleFilter" onchange="filterExercises()">
-                                <option value="all">All Muscle Groups</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Equipment</label>
-                            <select class="metric-select" id="equipmentFilter" onchange="filterExercises()">
-                                <option value="all">All Equipment</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="exercise-grid" id="exerciseGrid">
-                        <!-- Exercises will be rendered here -->
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Settings View -->
-            <div id="settings" class="view">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">⚙️ Settings & Sync</h2>
-                    </div>
-                    
-                    <div style="max-width: 800px;">
-                        <!-- Google Sheets Sync -->
-                        <div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); margin-bottom: 24px; border: 2px solid var(--color-primary);">
-                            <h3 style="font-size: 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px;">
-                                <span>☁️</span> Google Sheets Sync
+</div>
+<div class="exercise-filters">
+<div class="filter-group" style="flex: 2;">
+<label class="filter-label">Search Exercises</label>
+<input class="form-input" id="exerciseSearch" oninput="filterExercises()" placeholder="Search by name..." type="text"/>
+</div>
+<div class="filter-group">
+<label class="filter-label">Muscle Group</label>
+<select class="metric-select" id="muscleFilter" onchange="filterExercises()">
+<option value="all">All Muscle Groups</option>
+</select>
+</div>
+<div class="filter-group">
+<label class="filter-label">Equipment</label>
+<select class="metric-select" id="equipmentFilter" onchange="filterExercises()">
+<option value="all">All Equipment</option>
+</select>
+</div>
+</div>
+<div class="exercise-grid" id="exerciseGrid">
+<!-- Exercises will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Settings View -->
+<div class="view" id="settings">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">⚙️ Settings &amp; Sync</h2>
+</div>
+<div style="max-width: 800px;">
+<!-- Google Sheets Sync -->
+<div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); margin-bottom: 24px; border: 2px solid var(--color-primary);">
+<h3 style="font-size: 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px;">
+<span>☁️</span> Google Sheets Sync
                             </h3>
-                            <p style="color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.6;">
+<p style="color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.6;">
                                 Automatically sync your workouts, metrics, and exercises to Google Sheets for cross-device access and backup.
                             </p>
-                            
-                            <div class="form-group" style="margin-bottom: 16px;">
-                                <label class="form-label">Google Apps Script Web App URL</label>
-                                <input type="url" class="form-input" id="googleSheetsUrlInput" 
-                                       placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
-                                       value="">
-                                <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">
+<div class="form-group" style="margin-bottom: 16px;">
+<label class="form-label">Google Apps Script Web App URL</label>
+<input class="form-input" id="googleSheetsUrlInput" placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" type="url" value=""/>
+<div style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">
                                     📚 <a href="#" onclick="showGoogleSheetsSetup(); return false;" style="color: var(--color-primary); text-decoration: underline;">View setup instructions</a>
-                                </div>
-                            </div>
-                            
-                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <button class="add-metric-btn" onclick="saveGoogleSheetsUrl()">
+</div>
+</div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+<button class="add-metric-btn" onclick="saveGoogleSheetsUrl()">
                                     💾 Save URL
                                 </button>
-                                <button class="add-metric-btn" onclick="syncToGoogleSheets()" style="background: var(--color-secondary);">
+<button class="add-metric-btn" onclick="syncToGoogleSheets()" style="background: var(--color-secondary);">
                                     ☁️ Sync Now
                                 </button>
-                                <button class="calendar-btn" onclick="loadFromGoogleSheets()">
+<button class="calendar-btn" onclick="loadFromGoogleSheets()">
                                     ⬇️ Load from Sheets
                                 </button>
-                            </div>
-                            
-                            <div id="syncStatus" style="margin-top: 16px; padding: 12px; border-radius: var(--radius-sm); display: none;"></div>
-                        </div>
-                        
-                        <!-- Auto-sync Toggle -->
-                        <div style="background: var(--color-bg); padding: 20px; border-radius: var(--radius); margin-bottom: 24px;">
-                            <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
-                                <input type="checkbox" id="autoSyncToggle" onchange="toggleAutoSync()" 
-                                       style="width: 20px; height: 20px; cursor: pointer;">
-                                <div>
-                                    <div style="font-weight: 700; font-size: 16px;">Enable Auto-Sync</div>
-                                    <div style="color: var(--color-text-muted); font-size: 14px; margin-top: 4px;">
+</div>
+<div id="syncStatus" style="margin-top: 16px; padding: 12px; border-radius: var(--radius-sm); display: none;"></div>
+</div>
+<!-- Auto-sync Toggle -->
+<div style="background: var(--color-bg); padding: 20px; border-radius: var(--radius); margin-bottom: 24px;">
+<label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+<input id="autoSyncToggle" onchange="toggleAutoSync()" style="width: 20px; height: 20px; cursor: pointer;" type="checkbox"/>
+<div>
+<div style="font-weight: 700; font-size: 16px;">Enable Auto-Sync</div>
+<div style="color: var(--color-text-muted); font-size: 14px; margin-top: 4px;">
                                         Automatically sync data after every workout or metric update
                                     </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Export View -->
-            <div id="export" class="view">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Export Your Data</h2>
-                    </div>
-                    
-                    <div style="max-width: 600px;">
-                        <p style="color: var(--color-text-muted); margin-bottom: 32px; line-height: 1.6;">
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Export View -->
+<div class="view" id="export">
+<div class="card">
+<div class="card-header">
+<h2 class="card-title">Export Your Data</h2>
+</div>
+<div style="max-width: 600px;">
+<p style="color: var(--color-text-muted); margin-bottom: 32px; line-height: 1.6;">
                             Download your workout data, body metrics, and exercise library as CSV files. 
                             These files can be opened in Excel, Google Sheets, or any spreadsheet application.
                         </p>
-                        
-                        <div style="display: grid; gap: 20px;">
-                            <div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <div>
-                                        <h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Workout History</h3>
-                                        <p style="color: var(--color-text-muted); font-size: 14px;">
+<div style="display: grid; gap: 20px;">
+<div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div>
+<h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Workout History</h3>
+<p style="color: var(--color-text-muted); font-size: 14px;">
                                             All your workouts with dates, exercises, sets, reps, and weights
                                         </p>
-                                    </div>
-                                    <button class="add-metric-btn" onclick="downloadWorkoutsCSV()" style="flex-shrink: 0; margin-left: 16px;">
+</div>
+<button class="add-metric-btn" onclick="downloadWorkoutsCSV()" style="flex-shrink: 0; margin-left: 16px;">
                                         📥 Download
                                     </button>
-                                </div>
-                            </div>
-                            
-                            <div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <div>
-                                        <h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Body Metrics</h3>
-                                        <p style="color: var(--color-text-muted); font-size: 14px;">
+</div>
+</div>
+<div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div>
+<h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Body Metrics</h3>
+<p style="color: var(--color-text-muted); font-size: 14px;">
                                             Weight, body fat percentage, and calculated BMI over time
                                         </p>
-                                    </div>
-                                    <button class="add-metric-btn" onclick="downloadMetricsCSV()" style="flex-shrink: 0; margin-left: 16px;">
+</div>
+<button class="add-metric-btn" onclick="downloadMetricsCSV()" style="flex-shrink: 0; margin-left: 16px;">
                                         📥 Download
                                     </button>
-                                </div>
-                            </div>
-                            
-                            <div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <div>
-                                        <h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Exercise Library</h3>
-                                        <p style="color: var(--color-text-muted); font-size: 14px;">
+</div>
+</div>
+<div style="background: var(--color-bg); padding: 24px; border-radius: var(--radius); border: 2px solid var(--color-border);">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div>
+<h3 style="font-size: 20px; margin-bottom: 8px; font-weight: 700;">Exercise Library</h3>
+<p style="color: var(--color-text-muted); font-size: 14px;">
                                             Complete list of exercises with muscle groups and equipment
                                         </p>
-                                    </div>
-                                    <button class="add-metric-btn" onclick="downloadExercisesCSV()" style="flex-shrink: 0; margin-left: 16px;">
+</div>
+<button class="add-metric-btn" onclick="downloadExercisesCSV()" style="flex-shrink: 0; margin-left: 16px;">
                                         📥 Download
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </main>
-    </div>
-    
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <div class="bottom-nav-items">
-            <div class="bottom-nav-item active" onclick="switchViewMobile('dashboard')">
-                <div class="bottom-nav-icon">📊</div>
-                <div class="bottom-nav-label">Dashboard</div>
-            </div>
-            <div class="bottom-nav-item" onclick="switchViewMobile('exercises')">
-                <div class="bottom-nav-icon">🏋️</div>
-                <div class="bottom-nav-label">Exercises</div>
-            </div>
-            <div class="bottom-nav-item" onclick="switchViewMobile('export')">
-                <div class="bottom-nav-icon">📥</div>
-                <div class="bottom-nav-label">Export</div>
-            </div>
-            <div class="bottom-nav-item" onclick="switchViewMobile('settings')">
-                <div class="bottom-nav-icon">⚙️</div>
-                <div class="bottom-nav-label">Settings</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Exercise Detail Modal -->
-    <div class="modal" id="exerciseModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalExerciseName">Exercise</h2>
-                <button class="modal-close" onclick="closeModal('exerciseModal')">&times;</button>
-            </div>
-            <div id="modalExerciseDetails">
-                <!-- Exercise details will be rendered here -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Workout Detail Modal -->
-    <div class="modal" id="workoutModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalWorkoutDate">Workout Details</h2>
-                <button class="modal-close" onclick="closeModal('workoutModal')">&times;</button>
-            </div>
-            <div class="workout-detail" id="workoutDetailContent">
-                <!-- Workout details will be rendered here -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Muscle History Modal -->
-    <div class="modal" id="muscleHistoryModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalMuscleName">Muscle History</h2>
-                <button class="modal-close" onclick="closeModal('muscleHistoryModal')">&times;</button>
-            </div>
-            <div id="muscleHistoryContent">
-                <!-- Muscle history will be rendered here -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Add Metric Modal -->
-    <div class="modal" id="addMetricModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Add Body Metric</h2>
-                <button class="modal-close" onclick="closeModal('addMetricModal')">&times;</button>
-            </div>
-            <div style="background: var(--color-bg); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 24px;">
-                <div style="display: flex; gap: 24px; flex-wrap: wrap;">
-                    <div>
-                        <div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px;">YOUR HEIGHT</div>
-                        <div style="font-size: 18px; font-weight: 700;">5'11" (180.34 cm)</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px;">CURRENT BMI</div>
-                        <div style="font-size: 18px; font-weight: 700; color: var(--color-primary);" id="modalCurrentBMI">—</div>
-                    </div>
-                </div>
-            </div>
-            <form class="kpi-form" onsubmit="saveMetric(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Date</label>
-                        <input type="date" class="form-input" id="metricDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Weight (kg)</label>
-                        <input type="number" step="0.1" class="form-input" id="metricWeight" oninput="updateModalBMI()">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Body Fat %</label>
-                        <input type="number" step="0.1" class="form-input" id="metricBodyFat">
-                    </div>
-                </div>
-                <button type="submit" class="form-submit">Save Metric</button>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Exercise History Modal -->
-    <div class="modal" id="exerciseHistoryModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalExerciseHistoryName">Exercise History</h2>
-                <button class="modal-close" onclick="closeModal('exerciseHistoryModal')">&times;</button>
-            </div>
-            <div class="history-chart">
-                <canvas id="exerciseHistoryChart"></canvas>
-            </div>
-            <div id="exerciseHistoryList" style="margin-top: 24px;">
-                <!-- Exercise history list will be rendered here -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Google Sheets Setup Modal -->
-    <div class="modal" id="googleSheetsSetupModal">
-        <div class="modal-content" style="max-width: 800px;">
-            <div class="modal-header">
-                <h2 class="modal-title">📚 Google Sheets Setup Guide</h2>
-                <button class="modal-close" onclick="closeModal('googleSheetsSetupModal')">&times;</button>
-            </div>
-            <div style="line-height: 1.8; color: var(--color-text);">
-                <h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 1: Create a Google Sheet</h3>
-                <ol style="margin-left: 20px;">
-                    <li style="margin-bottom: 12px;">Go to <a href="https://sheets.google.com" target="_blank" style="color: var(--color-primary); text-decoration: underline;">sheets.google.com</a></li>
-                    <li style="margin-bottom: 12px;">Create a new blank spreadsheet</li>
-                    <li style="margin-bottom: 12px;">Name it "Fit Trackr Pro Data"</li>
-                    <li style="margin-bottom: 12px;">Create three sheets: <strong>Workouts</strong>, <strong>Metrics</strong>, and <strong>Exercises</strong></li>
-                </ol>
-                
-                <h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 2: Create Google Apps Script</h3>
-                <ol style="margin-left: 20px;">
-                    <li style="margin-bottom: 12px;">In your Google Sheet, go to <strong>Extensions → Apps Script</strong></li>
-                    <li style="margin-bottom: 12px;">Delete any code and paste this script:</li>
-                </ol>
-                
-                <pre style="background: var(--color-bg); padding: 16px; border-radius: var(--radius-sm); overflow-x: auto; font-size: 12px; margin: 16px 0;"><code>// Add this SHEET_ID at the top - replace with your actual Sheet ID
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+<div class="bottom-nav-items">
+<div class="bottom-nav-item active" onclick="switchViewMobile('dashboard')">
+<div class="bottom-nav-icon">📊</div>
+<div class="bottom-nav-label">Dashboard</div>
+</div>
+<div class="bottom-nav-item" onclick="switchViewMobile('exercises')">
+<div class="bottom-nav-icon">🏋️</div>
+<div class="bottom-nav-label">Exercises</div>
+</div>
+<div class="bottom-nav-item" onclick="switchViewMobile('export')">
+<div class="bottom-nav-icon">📥</div>
+<div class="bottom-nav-label">Export</div>
+</div>
+<div class="bottom-nav-item" onclick="switchViewMobile('settings')">
+<div class="bottom-nav-icon">⚙️</div>
+<div class="bottom-nav-label">Settings</div>
+</div>
+</div>
+</div>
+<!-- Exercise Detail Modal -->
+<div class="modal" id="exerciseModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title" id="modalExerciseName">Exercise</h2>
+<button class="modal-close" onclick="closeModal('exerciseModal')">×</button>
+</div>
+<div id="modalExerciseDetails">
+<!-- Exercise details will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Workout Detail Modal -->
+<div class="modal" id="workoutModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title" id="modalWorkoutDate">Workout Details</h2>
+<button class="modal-close" onclick="closeModal('workoutModal')">×</button>
+</div>
+<div class="workout-detail" id="workoutDetailContent">
+<!-- Workout details will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Muscle History Modal -->
+<div class="modal" id="muscleHistoryModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title" id="modalMuscleName">Muscle History</h2>
+<button class="modal-close" onclick="closeModal('muscleHistoryModal')">×</button>
+</div>
+<div id="muscleHistoryContent">
+<!-- Muscle history will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Add Metric Modal -->
+<div class="modal" id="addMetricModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title">Add Body Metric</h2>
+<button class="modal-close" onclick="closeModal('addMetricModal')">×</button>
+</div>
+<div style="background: var(--color-bg); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 24px;">
+<div style="display: flex; gap: 24px; flex-wrap: wrap;">
+<div>
+<div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px;">YOUR HEIGHT</div>
+<div style="font-size: 18px; font-weight: 700;">5'11" (180.34 cm)</div>
+</div>
+<div>
+<div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px;">CURRENT BMI</div>
+<div id="modalCurrentBMI" style="font-size: 18px; font-weight: 700; color: var(--color-primary);">—</div>
+</div>
+</div>
+</div>
+<form class="kpi-form" onsubmit="saveMetric(event)">
+<div class="form-grid">
+<div class="form-group">
+<label class="form-label">Date</label>
+<input class="form-input" id="metricDate" required="" type="date"/>
+</div>
+<div class="form-group">
+<label class="form-label">Weight (kg)</label>
+<input class="form-input" id="metricWeight" oninput="updateModalBMI()" step="0.1" type="number"/>
+</div>
+<div class="form-group">
+<label class="form-label">Body Fat %</label>
+<input class="form-input" id="metricBodyFat" step="0.1" type="number"/>
+</div>
+</div>
+<button class="form-submit" type="submit">Save Metric</button>
+</form>
+</div>
+</div>
+<!-- Exercise History Modal -->
+<div class="modal" id="exerciseHistoryModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title" id="modalExerciseHistoryName">Exercise History</h2>
+<button class="modal-close" onclick="closeModal('exerciseHistoryModal')">×</button>
+</div>
+<div class="history-chart">
+<canvas id="exerciseHistoryChart"></canvas>
+</div>
+<div id="exerciseHistoryList" style="margin-top: 24px;">
+<!-- Exercise history list will be rendered here -->
+</div>
+</div>
+</div>
+<!-- Google Sheets Setup Modal -->
+<div class="modal" id="googleSheetsSetupModal">
+<div class="modal-content" style="max-width: 800px;">
+<div class="modal-header">
+<h2 class="modal-title">📚 Google Sheets Setup Guide</h2>
+<button class="modal-close" onclick="closeModal('googleSheetsSetupModal')">×</button>
+</div>
+<div style="line-height: 1.8; color: var(--color-text);">
+<h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 1: Create a Google Sheet</h3>
+<ol style="margin-left: 20px;">
+<li style="margin-bottom: 12px;">Go to <a href="https://sheets.google.com" style="color: var(--color-primary); text-decoration: underline;" target="_blank">sheets.google.com</a></li>
+<li style="margin-bottom: 12px;">Create a new blank spreadsheet</li>
+<li style="margin-bottom: 12px;">Name it "Fit Trackr Pro Data"</li>
+<li style="margin-bottom: 12px;">Create three sheets: <strong>Workouts</strong>, <strong>Metrics</strong>, and <strong>Exercises</strong></li>
+</ol>
+<h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 2: Create Google Apps Script</h3>
+<ol style="margin-left: 20px;">
+<li style="margin-bottom: 12px;">In your Google Sheet, go to <strong>Extensions → Apps Script</strong></li>
+<li style="margin-bottom: 12px;">Delete any code and paste this script:</li>
+</ol>
+<pre style="background: var(--color-bg); padding: 16px; border-radius: var(--radius-sm); overflow-x: auto; font-size: 12px; margin: 16px 0;"><code>// Add this SHEET_ID at the top - replace with your actual Sheet ID
 const SHEET_ID = 'YOUR_SHEET_ID_HERE'; // Get from Sheet URL
 
 function doPost(e) {
@@ -1286,8 +1256,8 @@ function doPost(e) {
     const ws = sheet.getSheetByName('Workouts');
     ws.clear();
     ws.appendRow(['Date', 'Exercise', 'Muscle', 'Sets', 'Reps', 'Weight', 'Duration']);
-    data.workouts.forEach(w => {
-      w.exercises.forEach(ex => {
+    data.workouts.forEach(w =&gt; {
+      w.exercises.forEach(ex =&gt; {
         ws.appendRow([w.date, ex.name, ex.muscle, ex.sets || '', ex.reps || '', ex.weight || '', ex.duration || '']);
       });
     });
@@ -1295,14 +1265,14 @@ function doPost(e) {
     const ms = sheet.getSheetByName('Metrics');
     ms.clear();
     ms.appendRow(['Date', 'Weight', 'Body Fat %', 'BMI']);
-    data.metrics.forEach(m => {
+    data.metrics.forEach(m =&gt; {
       ms.appendRow([m.date, m.weight || '', m.bodyFat || '', m.bmi || '']);
     });
   } else if (data.type === 'exercises') {
     const es = sheet.getSheetByName('Exercises');
     es.clear();
     es.appendRow(['Name', 'Primary Muscle', 'Secondary', 'Equipment', 'Videos']);
-    data.exercises.forEach(ex => {
+    data.exercises.forEach(ex =&gt; {
       es.appendRow([ex.name, ex.primary, ex.secondary, ex.equipment, ex.videos]);
     });
   }
@@ -1331,119 +1301,109 @@ function doGet(e) {
   
   return ContentService.createTextOutput(JSON.stringify({error: 'Invalid type'}));
 }</code></pre>
-                
-                <h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 3: Get Your Sheet ID</h3>
-                <ol style="margin-left: 20px;">
-                    <li style="margin-bottom: 12px;">Look at your Google Sheet URL</li>
-                    <li style="margin-bottom: 12px;">Copy the ID between <code>/d/</code> and <code>/edit</code></li>
-                    <li style="margin-bottom: 12px;">Example: <code>https://docs.google.com/spreadsheets/d/<strong>1ABC...XYZ</strong>/edit</code></li>
-                    <li style="margin-bottom: 12px;">Replace <code>YOUR_SHEET_ID_HERE</code> in the script with your ID</li>
-                </ol>
-                
-                <h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 4: Deploy as Web App</h3>
-                <ol style="margin-left: 20px;">
-                    <li style="margin-bottom: 12px;">Click <strong>Deploy → New deployment</strong></li>
-                    <li style="margin-bottom: 12px;">Select type: <strong>Web app</strong></li>
-                    <li style="margin-bottom: 12px;">Execute as: <strong>Me</strong></li>
-                    <li style="margin-bottom: 12px;">Who has access: <strong>Anyone</strong></li>
-                    <li style="margin-bottom: 12px;">Click <strong>Deploy</strong></li>
-                    <li style="margin-bottom: 12px;">⚠️ <strong>Important:</strong> Authorize only <strong>this specific spreadsheet</strong> (not all Drive files)</li>
-                    <li style="margin-bottom: 12px;">Copy the <strong>Web app URL</strong></li>
-                    <li style="margin-bottom: 12px;">Paste it in the Settings page above</li>
-                </ol>
-                
-                <h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 5: Test the Connection</h3>
-                <ol style="margin-left: 20px;">
-                    <li style="margin-bottom: 12px;">Click <strong>Save URL</strong> in Settings</li>
-                    <li style="margin-bottom: 12px;">Click <strong>Sync Now</strong></li>
-                    <li style="margin-bottom: 12px;">Check your Google Sheet - data should appear!</li>
-                </ol>
-                
-                <div style="background: rgba(78, 205, 196, 0.1); padding: 16px; border-radius: var(--radius-sm); border: 2px solid var(--color-primary); margin-top: 24px;">
-                    <strong style="color: var(--color-primary);">✅ That's it!</strong> Your data will now sync automatically across all your devices.
+<h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 3: Get Your Sheet ID</h3>
+<ol style="margin-left: 20px;">
+<li style="margin-bottom: 12px;">Look at your Google Sheet URL</li>
+<li style="margin-bottom: 12px;">Copy the ID between <code>/d/</code> and <code>/edit</code></li>
+<li style="margin-bottom: 12px;">Example: <code>https://docs.google.com/spreadsheets/d/<strong>1ABC...XYZ</strong>/edit</code></li>
+<li style="margin-bottom: 12px;">Replace <code>YOUR_SHEET_ID_HERE</code> in the script with your ID</li>
+</ol>
+<h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 4: Deploy as Web App</h3>
+<ol style="margin-left: 20px;">
+<li style="margin-bottom: 12px;">Click <strong>Deploy → New deployment</strong></li>
+<li style="margin-bottom: 12px;">Select type: <strong>Web app</strong></li>
+<li style="margin-bottom: 12px;">Execute as: <strong>Me</strong></li>
+<li style="margin-bottom: 12px;">Who has access: <strong>Anyone</strong></li>
+<li style="margin-bottom: 12px;">Click <strong>Deploy</strong></li>
+<li style="margin-bottom: 12px;">⚠️ <strong>Important:</strong> Authorize only <strong>this specific spreadsheet</strong> (not all Drive files)</li>
+<li style="margin-bottom: 12px;">Copy the <strong>Web app URL</strong></li>
+<li style="margin-bottom: 12px;">Paste it in the Settings page above</li>
+</ol>
+<h3 style="margin: 24px 0 16px 0; font-size: 20px; color: var(--color-primary);">Step 5: Test the Connection</h3>
+<ol style="margin-left: 20px;">
+<li style="margin-bottom: 12px;">Click <strong>Save URL</strong> in Settings</li>
+<li style="margin-bottom: 12px;">Click <strong>Sync Now</strong></li>
+<li style="margin-bottom: 12px;">Check your Google Sheet - data should appear!</li>
+</ol>
+<div style="background: rgba(78, 205, 196, 0.1); padding: 16px; border-radius: var(--radius-sm); border: 2px solid var(--color-primary); margin-top: 24px;">
+<strong style="color: var(--color-primary);">✅ That's it!</strong> Your data will now sync automatically across all your devices.
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Add New Exercise Modal -->
-    <div class="modal" id="addExerciseModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Add New Exercise</h2>
-                <button class="modal-close" onclick="closeModal('addExerciseModal')">&times;</button>
-            </div>
-            <form class="kpi-form" onsubmit="saveNewExercise(event)">
-                <div class="form-group">
-                    <label class="form-label">Exercise Name</label>
-                    <input type="text" class="form-input" id="newExerciseName" required>
-                </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Primary Muscle</label>
-                        <select class="metric-select" id="newExercisePrimaryMuscle" required>
-                            <option value="">Select Muscle</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Equipment</label>
-                        <select class="metric-select" id="newExerciseEquipment" required>
-                            <option value="">Select Equipment</option>
-                            <option value="Barbell">Barbell</option>
-                            <option value="Dumbbell">Dumbbell</option>
-                            <option value="Cable">Cable</option>
-                            <option value="Machine">Machine</option>
-                            <option value="Resistance Band">Resistance Band</option>
-                            <option value="Body Weight">Body Weight</option>
-                            <option value="Treadmill">Treadmill</option>
-                            <option value="Pool">Pool</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Secondary Muscles (comma separated)</label>
-                    <input type="text" class="form-input" id="newExerciseSecondaryMuscles" placeholder="e.g., Biceps, Triceps">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">KPI Types</label>
-                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" name="kpiType" value="sets" style="width: 20px; height: 20px;">
-                            <span>Sets</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" name="kpiType" value="reps" style="width: 20px; height: 20px;">
-                            <span>Reps</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" name="kpiType" value="weight" style="width: 20px; height: 20px;">
-                            <span>Weight</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" name="kpiType" value="duration" style="width: 20px; height: 20px;">
-                            <span>Duration</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">YouTube Video URLs (one per line)</label>
-                    <textarea class="form-input" id="newExerciseVideos" rows="4" placeholder="https://www.youtube.com/watch?v=...&#10;https://www.youtube.com/watch?v=..." style="resize: vertical; font-family: inherit;"></textarea>
-                    <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 4px;">
+</div>
+</div>
+</div>
+<!-- Add New Exercise Modal -->
+<div class="modal" id="addExerciseModal">
+<div class="modal-content">
+<div class="modal-header">
+<h2 class="modal-title">Add New Exercise</h2>
+<button class="modal-close" onclick="closeModal('addExerciseModal')">×</button>
+</div>
+<form class="kpi-form" onsubmit="saveNewExercise(event)">
+<div class="form-group">
+<label class="form-label">Exercise Name</label>
+<input class="form-input" id="newExerciseName" required="" type="text"/>
+</div>
+<div class="form-grid">
+<div class="form-group">
+<label class="form-label">Primary Muscle</label>
+<select class="metric-select" id="newExercisePrimaryMuscle" required="">
+<option value="">Select Muscle</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Equipment</label>
+<select class="metric-select" id="newExerciseEquipment" required="">
+<option value="">Select Equipment</option>
+<option value="Barbell">Barbell</option>
+<option value="Dumbbell">Dumbbell</option>
+<option value="Cable">Cable</option>
+<option value="Machine">Machine</option>
+<option value="Resistance Band">Resistance Band</option>
+<option value="Body Weight">Body Weight</option>
+<option value="Treadmill">Treadmill</option>
+<option value="Pool">Pool</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">Secondary Muscles (comma separated)</label>
+<input class="form-input" id="newExerciseSecondaryMuscles" placeholder="e.g., Biceps, Triceps" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label">KPI Types</label>
+<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px;">
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+<input name="kpiType" style="width: 20px; height: 20px;" type="checkbox" value="sets"/>
+<span>Sets</span>
+</label>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+<input name="kpiType" style="width: 20px; height: 20px;" type="checkbox" value="reps"/>
+<span>Reps</span>
+</label>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+<input name="kpiType" style="width: 20px; height: 20px;" type="checkbox" value="weight"/>
+<span>Weight</span>
+</label>
+<label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+<input name="kpiType" style="width: 20px; height: 20px;" type="checkbox" value="duration"/>
+<span>Duration</span>
+</label>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">YouTube Video URLs (one per line)</label>
+<textarea class="form-input" id="newExerciseVideos" placeholder="https://www.youtube.com/watch?v=...
+https://www.youtube.com/watch?v=..." rows="4" style="resize: vertical; font-family: inherit;"></textarea>
+<div style="font-size: 12px; color: var(--color-text-muted); margin-top: 4px;">
                         Enter full YouTube URLs or embed URLs
                     </div>
-                </div>
-                
-                <button type="submit" class="form-submit">Add Exercise</button>
-            </form>
-        </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+</div>
+<button class="form-submit" type="submit">Add Exercise</button>
+</form>
+</div>
+</div>
+
+<script>
         // App State
         const appState = {
             currentView: 'dashboard',
@@ -3212,5 +3172,78 @@ function doGet(e) {
             });
         });
     </script>
-</body>
+<script>
+// === Fit Trackr Pro Enhanced JS ===
+let exercises = JSON.parse(localStorage.getItem('exercises')) || [
+  { name: 'Push Ups', muscle: 'Chest' },
+  { name: 'Pull Ups', muscle: 'Back' },
+  { name: 'Squats', muscle: 'Legs' },
+  { name: 'Deadlifts', muscle: 'Back' },
+  { name: 'Plank', muscle: 'Core' }
+];
+
+let favorites = JSON.parse(localStorage.getItem('fittrackr_favorites')) || [];
+let sheetURL = localStorage.getItem('fittrackr_sheetURL') || '';
+
+function renderExercises(){
+  const list = document.getElementById('exerciseList');
+  list.innerHTML = '';
+  const query = document.getElementById('searchExercises').value.toLowerCase();
+  exercises.filter(e => e.name.toLowerCase().includes(query)).forEach(e => {
+    const card = document.createElement('div');
+    card.className = 'exercise-card';
+    card.innerHTML = `<strong>${e.name}</strong><br><small>${e.muscle}</small>`;
+    const fav = document.createElement('span');
+    fav.className = 'exercise-fav' + (favorites.includes(e.name) ? ' active' : '');
+    fav.innerHTML = '★';
+    fav.onclick = () => toggleFav(e.name);
+    card.appendChild(fav);
+    list.appendChild(card);
+  });
+}
+
+function toggleFav(name){
+  if(favorites.includes(name)) favorites = favorites.filter(f => f !== name);
+  else favorites.push(name);
+  localStorage.setItem('fittrackr_favorites', JSON.stringify(favorites));
+  renderExercises();
+}
+
+async function loadFromSheets(){
+  if(!sheetURL){ alert('Please save your Google Sheets URL in Settings first.'); return; }
+  try{
+    const res = await fetch(sheetURL + '?action=load');
+    const data = await res.json();
+    if(data.exercises){ exercises = data.exercises; localStorage.setItem('exercises', JSON.stringify(exercises)); }
+    if(data.favorites){ favorites = data.favorites; localStorage.setItem('fittrackr_favorites', JSON.stringify(favorites)); }
+    alert('Data loaded from Sheets successfully!');
+    renderExercises();
+  }catch(err){ alert('Failed to load from Sheets'); console.error(err); }
+}
+
+async function saveToSheets(){
+  if(!sheetURL){ alert('Please save your Google Sheets URL in Settings first.'); return; }
+  if(!confirm('This will overwrite your existing Google Sheets data. Continue?')) return;
+  try{
+    const body = JSON.stringify({ action: 'save', exercises, favorites });
+    await fetch(sheetURL, { method: 'POST', body });
+    alert('Data saved to Google Sheets successfully!');
+  }catch(err){ alert('Failed to save to Sheets'); console.error(err); }
+}
+
+function showTab(id){
+  document.querySelectorAll('main section').forEach(s=>s.style.display='none');
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('.tab-bar button').forEach(b=>b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+function saveSheetURL(){
+  const url = document.getElementById('sheetURL').value.trim();
+  if(url){ localStorage.setItem('fittrackr_sheetURL', url); sheetURL = url; alert('Google Sheet URL saved.'); }
+}
+
+document.getElementById('searchExercises').addEventListener('input', renderExercises);
+window.onload = renderExercises;
+</script></body>
 </html>
